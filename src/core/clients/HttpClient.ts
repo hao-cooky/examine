@@ -5,8 +5,9 @@ interface ApiError {
 }
 
 const apiClient: AxiosInstance = axios.create({
-    baseURL: 'https://microsoftedge.github.io/v1',
-    withCredentials: true,
+    baseURL: 'https://microsoftedge.github.io',
+    timeout: 30000,
+    withCredentials: false,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -14,7 +15,7 @@ const apiClient: AxiosInstance = axios.create({
 
 // Add a response interceptor to handle global errors
 apiClient.interceptors.response.use(
-    (response) => response,
+    (response) => response.data,
 
     (error: AxiosError<ApiError>) => {
         // if (error.response && error.response.status === 401) {
