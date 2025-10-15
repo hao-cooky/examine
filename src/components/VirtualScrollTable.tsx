@@ -10,6 +10,7 @@ export interface ColumnDefinition<T extends object> {
     body?: (data: T) => React.ReactNode;
     className?: string;
     frozen?: boolean;
+    sortable?: boolean;
 }
 
 interface VirtualScrollTableProps<T extends object> {
@@ -31,6 +32,7 @@ export function VirtualScrollTable<T extends object>({
         <DataTable
             resizableColumns
             showGridlines
+            stripedRows
             value={value}
             loading={loading}
             scrollable
@@ -47,6 +49,7 @@ export function VirtualScrollTable<T extends object>({
                     style={col.style}
                     body={col.body}
                     frozen={col.frozen}
+                    sortable={col.sortable}
                 />
             ))}
         </DataTable>
