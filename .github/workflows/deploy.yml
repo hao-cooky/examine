@@ -6,9 +6,6 @@ on:
       - main
     paths:
       - 'src/**'
-defaults:
-  run:
-
 jobs:
   build:
     runs-on: ubuntu-latest
