@@ -6,11 +6,11 @@ export function UsersTable() {
     const { users, loading, error } = useUsersData();
 
     const columns: ColumnDefinition<User>[] = [
-        { field: 'id', header: 'Id', style: { width: '20%' } },
-        { field: 'name', header: 'Name', style: { width: '25%' } },
-        { field: 'language', header: 'Language', style: { width: '20%' } },
-        { field: 'bio', header: 'Bio', style: { width: '30%' } },
-        { field: 'version', header: 'Version', style: { width: '5%' } }
+        { field: 'name', header: 'Name', className: 'font-bold',frozen: true },
+        { field: 'id', header: 'Id',  },
+        { field: 'language', header: 'Language',  },
+        { field: 'bio', header: 'Bio', },
+        { field: 'version', header: 'Version' }
     ];
 
     if(error){
@@ -23,6 +23,7 @@ export function UsersTable() {
                 value={users}
                 columns={columns}
                 loading={loading}
+                scrollHeight={'calc(100vh - 16px)'}
             />
         </div>
     );

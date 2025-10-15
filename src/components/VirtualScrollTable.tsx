@@ -8,6 +8,8 @@ export interface ColumnDefinition<T extends object> {
     header: string;
     style?: React.CSSProperties;
     body?: (data: T) => React.ReactNode;
+    className?: string;
+    frozen?: boolean;
 }
 
 interface VirtualScrollTableProps<T extends object> {
@@ -18,9 +20,6 @@ interface VirtualScrollTableProps<T extends object> {
     scrollHeight?: string;
 }
 
-/**
- * Component Table chung, render dữ liệu lớn hiệu quả bằng Virtual Scroll (client-side).
- */
 export function VirtualScrollTable<T extends object>({
                                                          value,
                                                          columns,
@@ -30,6 +29,8 @@ export function VirtualScrollTable<T extends object>({
                                                      }: VirtualScrollTableProps<T>) {
     return (
         <DataTable
+            resizableColumns
+            showGridlines
             value={value}
             loading={loading}
             scrollable
@@ -41,9 +42,11 @@ export function VirtualScrollTable<T extends object>({
                 <Column
                     key={String(col.field)}
                     field={String(col.field)}
+                    className={col.className}
                     header={col.header}
                     style={col.style}
                     body={col.body}
+                    frozen={col.frozen}
                 />
             ))}
         </DataTable>
